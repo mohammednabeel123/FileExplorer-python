@@ -53,6 +53,34 @@ def signin():
     else:
         print("Email not found. Please sign up.")
 
+def show_files(directory):
+    current_scandir = os.scandir(directory)
+    for entry in current_scandir:
+        if entry.is_file():
+            print(f"📄 File: {entry.name}")
+def show_folder(directory):
+    current_scandir = os.scandir(directory)
+    for entry in current_scandir:
+        if entry.is_dir():
+            print(f"📁 Folder: {entry.name}")
+
+def show_both_files_and_folders(directory):
+    current_scandir = os.scandir(directory)
+        for entry in current_scandir:
+            if entry.is_file():
+                print(f"📄 File: {entry.name}")
+            elif entry.is_dir():
+                print(f"📁 Folder: {entry.name}")
+def change_dir():
+    dir_input = input("Enter the level you want to change your dir eg(../):  ")
+    try:
+        os.chdir(dir_input)
+        print("changed directory to:",os.getcwd())
+    except FileNotFoundError:
+        print("Directory not found. please check the path.")
+    except Exception as e:
+        print(f"⚠️ An error occurred: {e}")
+
 
 print("Let's Organize your documents")
 print("1.signin\n2.signup")
@@ -84,36 +112,5 @@ def information_explorer():
             change_dir()
 
 information_explorer()
-
-def show_files(directory):
-    current_scandir = os.scandir(directory)
-    for entry in current_scandir:
-        if entry.is_file():
-            print(f"📄 File: {entry.name}")
-def show_folder(directory):
-    current_scandir = os.scandir(directory)
-    for entry in current_scandir:
-        if entry.is_dir():
-            print(f"📁 Folder: {entry.name}")
-
-def show_both_files_and_folders(directory):
-    current_scandir = os.scandir(directory)
-        for entry in current_scandir:
-            if entry.is_file():
-                print(f"📄 File: {entry.name}")
-            elif entry.is_dir():
-                print(f"📁 Folder: {entry.name}")
-def change_dir():
-    dir_input = input("Enter the level you want to change your dir eg(../):  ")
-    try:
-        os.chdir(dir_input)
-        print("changed directory to:",os.getcwd())
-    except FileNotFoundError:
-        print("Directory not found. please check the path.")
-    except Exception as e:
-        print(f"⚠️ An error occurred: {e}")
-
-
-
 
 
